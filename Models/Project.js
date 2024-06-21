@@ -1,31 +1,13 @@
 const mongoose = require('mongoose')
 
 const projectSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-        maxlength: 255
-    },
-    description: {
+    name: String,
+    detall: {
         type: String
     },
-    image_url: {
-        type: String,
-        maxlength: 255
-    },
-    created_at: {
-        type: Date,
-        default: Date.now
-    },
-    updated_at: {
-        type: Date,
-        default: Date.now
-    },
-    owner_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+    price: {
+        type: Number
     }
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model('project', projectSchema)

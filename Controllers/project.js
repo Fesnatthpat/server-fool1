@@ -1,11 +1,21 @@
+const Project = require('../Models/Project')
+
 exports.read = async (req, res) => {
-    res.send("hello Controllers Read")
+    try {
+        const id = req.params.id
+        const projected = await Project.findOne({ _id: id }).exec()
+        res.send(projected)
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
 }
 
 exports.list = async (req, res) => {
     try {
         //code
-        res.send('hello list')
+        const projected = await Project.find({}).exec()
+        res.send(projected)
     } catch (err) {
         //error
         console.log(err)
@@ -15,7 +25,10 @@ exports.list = async (req, res) => {
 
 exports.create = async (req, res) => {
     try {
-        res.send('hello create')
+        console.log(req.body)
+        const projected = await Project(req.body).save()
+
+        res.send(projected)
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
@@ -24,7 +37,9 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        res.send('hello update')
+        const id = req.params.id
+        const updated = await Project.findOneAndUpdate({ _id: id }, req.body, { new: true }).exec()
+        res.send(updated)
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
@@ -33,7 +48,9 @@ exports.update = async (req, res) => {
 
 exports.remove = async (req, res) => {
     try {
-        res.send('hello remove')
+        const id = req.params.id
+        const removed = await Project.findOneAndDelete({ _id: id }).exec()
+        res.send(removed)
     } catch (err) {
         console.log(err)
         res.status(500).send('Server Error')
