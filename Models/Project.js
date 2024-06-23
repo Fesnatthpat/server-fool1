@@ -2,12 +2,13 @@ const mongoose = require('mongoose')
 
 const projectSchema = mongoose.Schema({
     name: String,
-    detall: {
+    detail: {
         type: String
     },
     price: {
         type: Number
-    }
+    },
+    file: String
 }, {timestamps: true})
 
 module.exports = mongoose.model('project', projectSchema)
