@@ -5,8 +5,8 @@ const projectSchema = mongoose.Schema({
     detail: {
         type: String
     },
-    price: {
-        type: Number
+    url: {
+        type: String
     },
     file: String
 }, {timestamps: true})
